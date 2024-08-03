@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export default function setRegisterPage() {
   const app = document.querySelector(".app");
 
