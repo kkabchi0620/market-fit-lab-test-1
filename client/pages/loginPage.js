@@ -34,10 +34,11 @@ async function login(event) {
   const userId = document.getElementById("userid");
 
   try {
-    await mixpanel.identify(userId.value);
-    await mixpanel.track("login_button_click", { user_id: `${userId.value}` });
-    await mixpanel.people.set({ last_login_date: new Date().toISOString() });
-    userId.value = "";
+    await mixpanel.alias(userId.value);
+    // await mixpanel.identify(userId.value);
+    // await mixpanel.track("login_button_click", { user_id: `${userId.value}` });
+    // await mixpanel.people.set({ last_login_date: new Date().toISOString() });
+    // userId.value = "";
 
     alert("로그인에 성공하였습니다. 감사합니다.");
 
