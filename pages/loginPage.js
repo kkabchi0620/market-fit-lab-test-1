@@ -6,7 +6,7 @@ export default function setLoginPage() {
   if (app) {
     app.innerHTML = `
             <div class="container">
-                <h2>아이디 입력</h2>
+                <h2>로그인</h2>
                 <form action="/submit" method="post" class="mixpanel-form">
                     <label for="userid">ID:</label>
                     <input type="text" id="userid" name="userid" oninput="this.value=this.value.replace(/[^A-Za-z\s]/g,'');" required />
@@ -20,7 +20,6 @@ export default function setLoginPage() {
     if (form) {
       form.addEventListener("submit", (event) => {
         login(event);
-        mixpanel.track("login_button_click");
       });
     }
   } else {
@@ -36,10 +35,15 @@ async function login(event) {
 
   try {
     await mixpanel.identify(userId.value);
+    await mixpanel.track("login_button_click", { user_id: `${userId.value}` });
+    await mixpanel.people.set({ last_login_date: new Date().toISOString() });
     userId.value = "";
 
-    return alert("로그인에 성공하였습니다. 감사합니다.");
+    alert("로그인에 성공하였습니다. 감사합니다.");
+
+    window.location.href = "/";
   } catch (err) {
+    userId.value = "";
     alert("회원가입 또는 로그인에 문제가 생겼습니다.");
     console.error(err);
   }
