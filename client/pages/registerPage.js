@@ -1,5 +1,7 @@
 import mixpanel from "mixpanel-browser";
 
+import { base } from "../config/base";
+
 export default function setRegisterPage() {
   const app = document.querySelector(".app");
 
@@ -35,7 +37,7 @@ async function register(event) {
   const userPassword = document.getElementById("userPassword").value;
 
   try {
-    const response = await fetch("http://localhost:8080/register", {
+    const response = await fetch(`${base}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

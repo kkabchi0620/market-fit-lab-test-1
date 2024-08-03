@@ -1,5 +1,7 @@
 import mixpanel from "mixpanel-browser";
 
+import { base } from "../config/base";
+
 export default function setLoginPage() {
   const app = document.querySelector(".app");
 
@@ -37,8 +39,10 @@ async function login(event) {
   const userId = document.getElementById("userId").value;
   const userPassword = document.getElementById("userPassword").value;
 
+  const origin = window.location.origin;
+
   try {
-    const response = await fetch(`${window.location.href}:8080/login`, {
+    const response = await fetch(`${base}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,10 +54,10 @@ async function login(event) {
       throw new Error("Login failed");
     }
 
-    // await mixpanel.alias(userId);
-    // await mixpanel.identify(userId);
-    // await mixpanel.track("login_button_click", { user_id: userId });
-    // await mixpanel.people.set({ last_login_date: new Date().toISOString() });
+    await mixpanel.alias(userId);
+    await mixpanel.identify(userId);
+    await mixpanel.track("login_button_click", { user_id: userId });
+    await mixpanel.people.set({ last_login_date: new Date().toISOString() });
 
     alert("로그인에 성공하였습니다.");
     window.location.href = "/";
