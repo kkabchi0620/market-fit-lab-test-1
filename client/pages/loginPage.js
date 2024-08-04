@@ -54,7 +54,6 @@ async function login(event) {
       throw new Error("Login failed");
     }
 
-    await mixpanel.alias(userId);
     await mixpanel.identify(userId);
     await mixpanel.track("login_button_click", { user_id: userId });
     await mixpanel.people.set({ last_login_date: new Date().toISOString() });

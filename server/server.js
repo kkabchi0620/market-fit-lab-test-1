@@ -1,6 +1,7 @@
 import express from "express";
 import sqlite3 from "sqlite3";
 import cors from "cors";
+import axios from "axios";
 
 const app = express();
 const port = 8080;
@@ -37,6 +38,7 @@ app.post("/register", (req, res) => {
         res.status(400).json({ error: err.message });
         return;
       }
+
       res.json({ id: this.lastID });
     }
   );
