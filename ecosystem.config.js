@@ -1,27 +1,15 @@
 module.exports = {
   apps: [
     {
-      name: "server",
+      name: "myapp-server",
       script: "./server/server.js",
-      watch: true,
-      env: {
-        NODE_ENV: "development",
-      },
-      env_production: {
-        NODE_ENV: "production",
-      },
+      watch: false,
     },
     {
-      name: "client",
-      script: "vite",
+      name: "myapp-client",
+      script: "npm run start",
       cwd: "./client",
-      watch: true,
-      env: {
-        NODE_ENV: "development",
-      },
-      env_production: {
-        NODE_ENV: "production",
-      },
+      watch: false
     },
   ],
 };
