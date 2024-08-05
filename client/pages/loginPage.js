@@ -39,8 +39,6 @@ async function login(event) {
   const userId = document.getElementById("userId").value;
   const userPassword = document.getElementById("userPassword").value;
 
-  const origin = window.location.origin;
-
   try {
     const response = await fetch(`${base}/login`, {
       method: "POST",
