@@ -52,7 +52,10 @@ async function login(event) {
       throw new Error("Login failed");
     }
 
+    // 2. id를 입력하고 버튼을 누르면 로그인 이벤트를 기록하고 mixpanel에 사용자 식별처리를 합니다.
     await mixpanel.identify(userId);
+
+    // 3. 사용자 식별처리 후 마지막 로그인 날짜를 사용자 속성으로 기록합니다.
     await mixpanel.track("login_button_click", { user_id: userId });
     await mixpanel.people.set({ last_login_date: new Date().toISOString() });
 

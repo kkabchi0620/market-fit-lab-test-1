@@ -24,6 +24,7 @@ function trackPageView() {
   switch (pathname) {
     case "/login_page":
       setLoginPage();
+      // 1. 익명의 사용자가 로그인 페이지(/login_page)에 방문했을때 방문 이벤트를 기록합니다.
       mixpanel.track("login_page_view");
       break;
 
