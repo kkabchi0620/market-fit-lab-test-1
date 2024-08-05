@@ -1,6 +1,6 @@
 # 믹스패널 구현
 
-### 믹스패널 주소
+### 믹스패널 Board 주소
 
 https://mixpanel.com/s/2PCk9S
 
